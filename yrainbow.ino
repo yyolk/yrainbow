@@ -46,7 +46,7 @@ void fillCanvas(int c1, int c2, int c3){
   int c[] = {c1, c2, c3};
 
   
-  
+  c
   for (byte x = 0; x < 8; x++)
   {
     for (byte y = 0; y < 8; y++)
