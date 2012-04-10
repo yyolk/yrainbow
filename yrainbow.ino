@@ -1,65 +1,4 @@
 
-/*
-
-  simple-rainbowduino-jmr-v1.pde
-    
-  written by Johannes M. Roth on 10.03.2011
-  visit the project home at http://code.google.com/p/simple-rainbowduino-jmr/
-  
-  
-  This Arduino sketch should be compatible with both the older version of
-  the Rainbowduino (ATmega168) and the current release (ATmega328).
-  
-  I wrote it because - i'm sorry - Seeedstudio suuc...
-  I'm sorry. Hardware is fine, but don't expect any support.
-  
-  So, this is a *very basic* code for driving an Rainbowduino.
-  No communication whatsoever is implemented. You are free to write your
-  own protocol! Just one thing i stumbled upon during implementing a
-  serial communication protocol: choose a high baud rate! Slow ones don't
-  work -- i think maybe some interference with the interrupts?
-  
-  For flashing select board...
-    "Arduino Diecimila, Duemilanove, or Nano w/ ATmega168"
-  or
-    "Arduino Duemilanove or Nano w/ ATmega328"
-  depending on your revision and select the appropiate port.
-    (on Mac OS X select "/dev/tty.usbserial*")
-  
-  If you have an USB-UART adapter connect Reset (or RST or DTR),
-  Ground (GND), 5V to the terminal or the connector (don't forget to set
-  the switch!) and RX to TXD and TX to RXD.
-  If you have any Arduino (or compatible) see:
-    http://code.google.com/p/rainbowduino-firmware/wiki/HowtoFlashViaUSB
-  
-  
-  
-  based on the Rainbowduino_Plasma.pde 'Color cycling plasma' by Ben Combee
-  which is based on a version of Ken Corey
-  which is based on a version of Windell H. Oskay
-  ...i hope i got that right...
-  (was available through the seeedstudio site, but i couldn't find it anymore)
-  
-  aaaand
-  
-  based on the Rainbowduino Firmware 3 by pacrox22-at-gmail-dot-com
-  (have a look at http://code.google.com/p/rainbowduino-firmware/)
-  
-  
-  This library is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-  
-  This library is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this library. If not, see http://www.gnu.org/licenses/
-*/
-
 
 #include "Rainbow.h"
 
@@ -76,155 +15,41 @@ void setup()
 
 void loop()
 {
+  byte f[3] = {255, 6, 250};
+  byte c[3] = {f[0]%255, f[1]%255, f[2]%255};
+  for (int i=0; i<4; i++){
+    c[i] = random(c[i]*12)%255;
+  }
+  fillCanvas(c);
 
- switch (int(random(4))){
-   case 0:   
-    drawAbsisMinas(0);
-    break;
-    case 1:
-    break;
-animatedTears();
-    case 2:
-drawSmiley(random(255));
-    break;
+  delay(10);
+  drawAbsisMinas(0);
 
-    case 3:
-    break;
-drawFrowny(random(255));
-    break;
-    default:
-    break;
- }   
- delay(100);
- fillCanvas(random(255), random(255), random(255));
-}
-
-void drawSmiley(byte color){
-  setPixel(1, 1, color, color, color);
-  setPixel(1, 2, color, color, color);
-  setPixel(2, 1, color, color, color);
-  setPixel(2, 2, color, color, color);
-  setPixel(5, 1, color, color, color);
-  setPixel(5, 2, color, color, color);
-  setPixel(6, 1, color, color, color);
-  setPixel(6, 2, color, color, color);
-  setPixel(1, 5, color, color, color);
-  setPixel(6, 5, color, color, color);
-  setPixel(2, 6, color, color, color);
-  setPixel(3, 6, color, color, color);
-  setPixel(4, 6, color, color, color);
-  setPixel(5, 6, color, color, color); 
-}
-
-void drawFrowny(byte color){
-  setPixel(1, 1, color, color, color);
-  setPixel(1, 1, color, color, color);
-  setPixel(2, 1, color, color, color);
-  setPixel(2, 2, color, color, color);
-  setPixel(5, 1, color, color, color);
-  setPixel(5, 2, color, color, color);
-  setPixel(6, 1, color, color, color);
-  setPixel(6, 2, color, color, color);
-  setPixel(1, 6, color, color, color);
-  setPixel(6, 6, color, color, color);
-  setPixel(2, 5, color, color, color);
-  setPixel(3, 5, color, color, color);
-  setPixel(4, 5, color, color, color);
-  setPixel(5, 5, color, color, color);
-}
-
-void drawAbsisMinas(byte color){
-  fillCanvas(color, color, color);
-  int f[3] = {255, 6, 250};
-
-
-  setPixel(1, 0, f[0], f[1], f[2]);
-  setPixel(1, 1, f[0], f[1], f[2]);
-  setPixel(2,0, f[0], f[1], f[2]);
-  setPixel(2, 1, f[0], f[1], f[2]);
-  setPixel(5, 0, f[0], f[1], f[2]);
-  setPixel(5, 1, f[0], f[1], f[2]);
-  setPixel(6, 0, f[0], f[1], f[2]);
-  setPixel(6, 1, f[0], f[1], f[2]);
-//  setPixel(0, 7, f[0], f[1], f[2]);
-//  setPixel(7, 7, f[0], f[1], f[2]);
-    setPixel(1, 7, f[0], f[1], f[2]);
-  setPixel(2, 6, f[0], f[1], f[2]);
-  setPixel(3, 6, f[0], f[1], f[2]);
-
-  setPixel(4, 6, f[0], f[1], f[2]);
-  setPixel(5, 6, f[0], f[1], f[2]);
-  setPixel(6, 7, f[0], f[1], f[2]);
+  delay(25);
+  drawAbsisMinas(f);
+  delay(50);
 
 
 }
 
-
-void animatedTears(){
-//  int f[3] = { 255, 6, 250 };
-  int f[3] = { random(255), random(255), random(255) };
-  int dd = 25;
-  
-  setPixel(1,2, f[0], f[1], f[2]);
-  setPixel(6,2, f[0], f[1], f[2]);
-  
-  delay(dd*5);
-  
-  setPixel(1,2, 0,0,0);
-  setPixel(6,2, 0,0,0);
-  
-  delay(dd);
-  
-//  setPixel(1,3, f[0], f[1], f[2]);
-//  setPixel(0,3, f[0], f[1], f[2]);
-//  setPixel(1,4, f[0], f[1], f[2]);
-  setPixel(1,3, f[0], f[1], f[2]);
-  setPixel(6,3, f[0], f[1], f[2]);
-  
-  delay(dd*5);
-  
-//  setPixel(1,3, 0,0,0);
-//  setPixel(0,3, 0,0,0);
-//  setPixel(1,4, 0,0,0);
-  setPixel(1,3, 0,0,0);
-  setPixel(6,3, 0,0,0);  
-  delay(dd);
-  
-//  setPixel(0,4, f[0], f[1], f[2]);
-//  setPixel(0,3, f[0], f[1], f[2]);
-//  setPixel(1,5, f[0], f[1], f[2]);
-
-  setPixel(1,4, f[0], f[1], f[2]);
-  setPixel(6,4, f[0], f[1], f[2]);
-  
-  delay(dd*5);
-//  setPixel(0,4, 0,0,0);
-//  setPixel(0,3, 0,0,0);  
-//  setPixel(1,5, 0,0,0);
-  
-  setPixel(6,4, 0,0,0);
-  setPixel(1,4, 0,0,0);
-  
-  delay(dd);
-  
-  setPixel(1,5, f[0], f[1], f[2]);
-  setPixel(6,5, f[0], f[1], f[2]);
-  
-  delay(dd*5);
-  
-    setPixel(1,5, 0,0,0);
-  setPixel(6,5, 0,0,0);
-  
+void randomDots(){
+   for (int i=0; i<8; i++){
+      for (int j=0; j<8; j++){
+        setPixel(i,j, random(255), random(255), random(255));
+   } 
+   }
 }
 
 
+
+
   
-void fillCanvas(byte c1, byte c2, byte c3){
+void fillCanvas(byte c[]){
 
   for (byte x = 0; x < 8; x++)
   {
     for (byte y = 0; y < 8; y++)
-      setPixel(x, y, c1, c2, c3);
+      setPixel(x, y, c[1], c[2], c[3]);
   }
 }
 // FIXME
@@ -267,7 +92,16 @@ void fillCanvas(byte c1, byte c2, byte c3){
 //  }
 //}
 
-int randomColorTriplet(){
+byte *randomColorTriplet(){
+  byte *pa, array[3];
+  for (int i=0; i<3; i++){
+      array[i] = random(255);
+      
+  }  
+  pa = &array[0];
+
+  return pa;
+
   
 }
 
