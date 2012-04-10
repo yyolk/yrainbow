@@ -3,6 +3,7 @@ void drawAbsisMinas(byte f[]){
 //  int f[3] = {255, 6, 250};
 
 
+
   setPixel(1, 0, f[0], f[1], f[2]);
   setPixel(1, 1, f[0], f[1], f[2]);
   setPixel(2,0, f[0], f[1], f[2]);
@@ -22,12 +23,12 @@ void drawAbsisMinas(byte f[]){
   setPixel(6, 7, f[0], f[1], f[2]);
   //byte offc[3]={random(0xf),random(0xf),random(0xf)};
   //byte offc[3]={f[0], f[1], f[2]};
-  byte offc[] = {*f*random(2000)%255, *f*random(2000)%255, *f*random(2000)%255};
+//  byte offc[] = {*f*random(2000)%255, *f*random(2000)%255, *f*random(2000)%255};
 //  for (int i=0; i<4; i++){
 //     //offc[i] = random(0xf);
 //      offc[i] = (0,0,90);
 //  }
-  
+  byte offc[] = {*f};
   animatedTears(offc);
   
 }
@@ -36,7 +37,8 @@ void drawAbsisMinas(byte f[]){
 void animatedTears(byte offc[]){
 //  int f[3] = { 255, 6, 250 };
 //  int f[3] = { random(255), random(255), random(255) };
-  int f[3] = {0, 25, 230};
+//  int f[3] = {0, 25, 230};
+  int f[3] = {255 - offc[0], 255 - offc[1], 255 - offc[2]};
   int dd = 25;
   
   delay(dd*6);

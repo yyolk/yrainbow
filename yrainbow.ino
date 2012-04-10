@@ -7,6 +7,10 @@ extern byte gamma[16];
 byte line, level;
 
 
+byte* blk[]={0, 0, 0};
+byte* fuschia[3] = {255, 21, 186};
+byte* blu[3] = {0, 65, 255};
+
 void setup()
 {
   _init();
@@ -15,21 +19,9 @@ void setup()
 
 void loop()
 {
-  byte f[3] = {255, 6, 250};
-  byte c[3] = {f[0]%255, f[1]%255, f[2]%255};
-  for (int i=0; i<4; i++){
-    c[i] = random(c[i]*12)%255;
-  }
-  fillCanvas(c);
-
-  delay(10);
-  drawAbsisMinas(0);
-
-  delay(25);
-  drawAbsisMinas(f);
-  delay(50);
-
-
+//  free(blkarray);
+  fillCanvas(blkarray);
+  drawAbsisMinas(blu);
 }
 
 void randomDots(){
@@ -44,14 +36,18 @@ void randomDots(){
 
 
   
-void fillCanvas(byte c[]){
+void fillCanvas(byte *c[]){
 
   for (byte x = 0; x < 8; x++)
   {
     for (byte y = 0; y < 8; y++)
-      setPixel(x, y, c[1], c[2], c[3]);
+      setPixel(x, y, *c[0], *c[1], *c[2]);
   }
 }
+
+
+
+
 // FIXME
 //// use this to set individual leds
 //void setLED(byte n, byte brightness)
@@ -100,9 +96,7 @@ byte *randomColorTriplet(){
   }  
   pa = &array[0];
 
-  return pa;
-
-  
+  return pa; 
 }
 
 // this function sets one 'pixel', i.e. three leds at a time
