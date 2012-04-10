@@ -119,6 +119,10 @@ for (int ii = 0; ii < 100; ii++){
     delay(50);
     drawSmiley(0);
     delay(50);
+    drawFrowny(0xf);
+    delay(25);
+    drawFrowny(0);
+    delay(25);
 }
 
 
@@ -151,12 +155,12 @@ void drawFrowny(byte color){
   setPixel(5, 2, color, color, color);
   setPixel(6, 1, color, color, color);
   setPixel(6, 2, color, color, color);
-  setPixel(1, 5, color, color, color);
-  setPixel(6, 5, color, color, color);
-  setPixel(2, 6, color, color, color);
-  setPixel(3, 6, color, color, color);
-  setPixel(4, 6, color, color, color);
-  setPixel(5, 6, color, color, color);
+  setPixel(1, 6, color, color, color);
+  setPixel(6, 6, color, color, color);
+  setPixel(2, 5, color, color, color);
+  setPixel(3, 5, color, color, color);
+  setPixel(4, 5, color, color, color);
+  setPixel(5, 5, color, color, color);
 }
 // FIXME
 //// use this to set individual leds
