@@ -7,21 +7,24 @@ extern byte gamma[16];
 byte line, level;
 
 
-byte* blk[]={0, 0, 0};
-byte* fuschia[3] = {255, 21, 186};
-byte* blu[3] = {0, 65, 255};
+void blackblack(int* blk[]);
+int* blk[]={0, 0, 0};
+void fuschiafuschia(int* fuschia[]);
+int* fuschia[] = {0,0,0};
+
 
 void setup()
 {
   _init();
-}
 
+  
+}
 
 void loop()
 {
-//  free(blkarray);
-  fillCanvas(blkarray);
-  drawAbsisMinas(blu);
+  fillCanvas(0,0,0);
+  delay(25);
+  fillCanvas(255,255,255);
 }
 
 void randomDots(){
@@ -36,12 +39,17 @@ void randomDots(){
 
 
   
-void fillCanvas(byte *c[]){
+void fillCanvas(int c1, int c2, int c3){
 
+  
+  int c[] = {this.c1, this.c2, this.c3};
+
+  
+  
   for (byte x = 0; x < 8; x++)
   {
     for (byte y = 0; y < 8; y++)
-      setPixel(x, y, *c[0], *c[1], *c[2]);
+      setPixel(x, y, c[0], c[1], c[2]);
   }
 }
 
