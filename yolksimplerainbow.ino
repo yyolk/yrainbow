@@ -77,14 +77,28 @@ void setup()
 void loop()
 {
 
-drawAbsisMinas(0);
+ switch (int(random(4))){
+   case 0:   
+    drawAbsisMinas(0);
+    break;
+    case 1:
+    break;
 animatedTears();
+    case 2:
+drawSmiley(random(255));
+    break;
 
-
-
-
-
+    case 3:
+    break;
+drawFrowny(random(255));
+    break;
+    default:
+    break;
+ }   
+ delay(100);
+ fillCanvas(random(255), random(255), random(255));
 }
+
 void drawSmiley(byte color){
   setPixel(1, 1, color, color, color);
   setPixel(1, 2, color, color, color);
@@ -104,7 +118,7 @@ void drawSmiley(byte color){
 
 void drawFrowny(byte color){
   setPixel(1, 1, color, color, color);
-  setPixel(1, 2, color, color, color);
+  setPixel(1, 1, color, color, color);
   setPixel(2, 1, color, color, color);
   setPixel(2, 2, color, color, color);
   setPixel(5, 1, color, color, color);
@@ -124,14 +138,14 @@ void drawAbsisMinas(byte color){
   int f[3] = {255, 6, 250};
 
 
+  setPixel(1, 0, f[0], f[1], f[2]);
   setPixel(1, 1, f[0], f[1], f[2]);
-  setPixel(1, 2, f[0], f[1], f[2]);
-  setPixel(2,1, f[0], f[1], f[2]);
-  setPixel(2, 2, f[0], f[1], f[2]);
+  setPixel(2,0, f[0], f[1], f[2]);
+  setPixel(2, 1, f[0], f[1], f[2]);
+  setPixel(5, 0, f[0], f[1], f[2]);
   setPixel(5, 1, f[0], f[1], f[2]);
-  setPixel(5, 2, f[0], f[1], f[2]);
+  setPixel(6, 0, f[0], f[1], f[2]);
   setPixel(6, 1, f[0], f[1], f[2]);
-  setPixel(6, 2, f[0], f[1], f[2]);
 //  setPixel(0, 7, f[0], f[1], f[2]);
 //  setPixel(7, 7, f[0], f[1], f[2]);
     setPixel(1, 7, f[0], f[1], f[2]);
@@ -147,50 +161,63 @@ void drawAbsisMinas(byte color){
 
 
 void animatedTears(){
-  int f[3] = { 255, 6, 250 };
+//  int f[3] = { 255, 6, 250 };
+  int f[3] = { random(255), random(255), random(255) };
   int dd = 25;
   
-  setPixel(1,3, f[0], f[1], f[2]);
-  setPixel(6,3, f[0], f[1], f[2]);
+  setPixel(1,2, f[0], f[1], f[2]);
+  setPixel(6,2, f[0], f[1], f[2]);
   
   delay(dd*5);
   
-  setPixel(1,3, 0,0,0);
-  setPixel(6,3, 0,0,0);
+  setPixel(1,2, 0,0,0);
+  setPixel(6,2, 0,0,0);
   
   delay(dd);
   
 //  setPixel(1,3, f[0], f[1], f[2]);
 //  setPixel(0,3, f[0], f[1], f[2]);
 //  setPixel(1,4, f[0], f[1], f[2]);
-  setPixel(1,4, f[0], f[1], f[2]);
-  setPixel(6,4, f[0], f[1], f[2]);
+  setPixel(1,3, f[0], f[1], f[2]);
+  setPixel(6,3, f[0], f[1], f[2]);
   
   delay(dd*5);
   
 //  setPixel(1,3, 0,0,0);
 //  setPixel(0,3, 0,0,0);
 //  setPixel(1,4, 0,0,0);
-  setPixel(1,4, 0,0,0);
-  setPixel(6,4, 0,0,0);  
+  setPixel(1,3, 0,0,0);
+  setPixel(6,3, 0,0,0);  
   delay(dd);
   
 //  setPixel(0,4, f[0], f[1], f[2]);
 //  setPixel(0,3, f[0], f[1], f[2]);
 //  setPixel(1,5, f[0], f[1], f[2]);
 
-  setPixel(1,5, f[0], f[1], f[2]);
-  setPixel(6,5, f[0], f[1], f[2]);
+  setPixel(1,4, f[0], f[1], f[2]);
+  setPixel(6,4, f[0], f[1], f[2]);
   
   delay(dd*5);
 //  setPixel(0,4, 0,0,0);
 //  setPixel(0,3, 0,0,0);  
 //  setPixel(1,5, 0,0,0);
   
+  setPixel(6,4, 0,0,0);
+  setPixel(1,4, 0,0,0);
+  
+  delay(dd);
+  
+  setPixel(1,5, f[0], f[1], f[2]);
+  setPixel(6,5, f[0], f[1], f[2]);
+  
+  delay(dd*5);
+  
+    setPixel(1,5, 0,0,0);
   setPixel(6,5, 0,0,0);
-  setPixel(1,5, 0,0,0);
   
 }
+
+
   
 void fillCanvas(byte c1, byte c2, byte c3){
 
@@ -240,6 +267,9 @@ void fillCanvas(byte c1, byte c2, byte c3){
 //  }
 //}
 
+int randomColorTriplet(){
+  
+}
 
 // this function sets one 'pixel', i.e. three leds at a time
 // use this if you have a 8x8 led matrix
