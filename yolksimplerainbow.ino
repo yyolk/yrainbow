@@ -76,55 +76,11 @@ void setup()
 
 void loop()
 {
-  // switches every dot dark
-  for (byte x = 0; x < 8; x++)
-  {
-    for (byte y = 0; y < 8; y++)
-      setPixel(x, y, random(0xf), random(0xf), random(0xf));
-  }
-  
-//  delay(1000);
-  
-  // paint a smiley :)
-//  setPixel(1, 1, 0xf, 0xf, 0xf);
-//  setPixel(1, 2, 0xf, 0xf, 0xf);
-//  setPixel(2, 1, 0xf, 0xf, 0xf);
-//  setPixel(2, 2, 0xf, 0xf, 0xf);
-//  setPixel(5, 1, 0xf, 0xf, 0xf);
-//  setPixel(5, 2, 0xf, 0xf, 0xf);
-//  setPixel(6, 1, 0xf, 0xf, 0xf);
-//  setPixel(6, 2, 0xf, 0xf, 0xf);
-//  setPixel(1, 5, 0xf, 0xf, 0xf);
-//  setPixel(6, 5, 0xf, 0xf, 0xf);
-//  setPixel(2, 6, 0xf, 0xf, 0xf);
-//  setPixel(3, 6, 0xf, 0xf, 0xf);
-//  setPixel(4, 6, 0xf, 0xf, 0xf);
-//  setPixel(5, 6, 0xf, 0xf, 0xf);
 
-
-// paint a YOOKLK
-for (int ii = 0; ii < 100; ii++){
-    for (byte x = 0; x < 8; x++)
-  {
-    for (byte y = 0; y < 8; y++)
-    
-      setPixel(x, y, random(0xf), random(0xf), random(0xf));
-    for (byte j=0 ; j< 10 ; j++){
-
-    
-  }
-  
-}
-     drawSmiley(0xf);
-    delay(50);
-    drawSmiley(0);
-    delay(50);
-    drawFrowny(0xf);
-    delay(25);
-    drawFrowny(0);
-    delay(25);
-}
-
+drawAbsisMinas(0);
+animatedTears();
+delay(10);
+animatedTears();
 
 
 
@@ -161,6 +117,52 @@ void drawFrowny(byte color){
   setPixel(3, 5, color, color, color);
   setPixel(4, 5, color, color, color);
   setPixel(5, 5, color, color, color);
+}
+
+void drawAbsisMinas(byte color){
+  fillCanvas(color, color, color);
+  int fuschia[3] = {255, 6, 250};
+
+  setPixel(1, 1, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(1, 2, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(2, 1, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(2, 2, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(5, 1, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(5, 2, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(6, 1, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(6, 2, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(1, 6, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(6, 6, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(2, 5, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(3, 5, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(4, 5, fuschia[0], fuschia[1], fuschia[2]);
+  setPixel(5, 5, fuschia[0], fuschia[1], fuschia[2]);
+
+
+}
+
+
+void animatedTears(){
+  
+  setPixel(2,3, 0xf, 0xf, 0xf);
+  delay(25);
+
+  setPixel(1,4, 0xf, 0xf, 0xf);
+  setPixel(2,3, 0, 0, 0);
+  delay(25);
+  setPixel(1,4, 0, 0, 0);
+  setPixel(1,3, 0xf, 0xf, 0xf);
+
+  delay(25);
+}
+  
+void fillCanvas(byte c1, byte c2, byte c3){
+
+  for (byte x = 0; x < 8; x++)
+  {
+    for (byte y = 0; y < 8; y++)
+      setPixel(x, y, c1, c2, c3);
+  }
 }
 // FIXME
 //// use this to set individual leds
