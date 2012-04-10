@@ -79,14 +79,14 @@ void loop()
 
 drawAbsisMinas(0);
 animatedTears();
-delay(10);
-animatedTears();
+
+
 
 
 
 }
 void drawSmiley(byte color){
-         setPixel(1, 1, color, color, color);
+  setPixel(1, 1, color, color, color);
   setPixel(1, 2, color, color, color);
   setPixel(2, 1, color, color, color);
   setPixel(2, 2, color, color, color);
@@ -121,39 +121,75 @@ void drawFrowny(byte color){
 
 void drawAbsisMinas(byte color){
   fillCanvas(color, color, color);
-  int fuschia[3] = {255, 6, 250};
+  int f[3] = {255, 6, 250};
 
-  setPixel(1, 1, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(1, 2, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(2, 1, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(2, 2, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(5, 1, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(5, 2, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(6, 1, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(6, 2, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(1, 6, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(6, 6, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(2, 5, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(3, 5, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(4, 5, fuschia[0], fuschia[1], fuschia[2]);
-  setPixel(5, 5, fuschia[0], fuschia[1], fuschia[2]);
+
+  setPixel(1, 1, f[0], f[1], f[2]);
+  setPixel(1, 2, f[0], f[1], f[2]);
+  setPixel(2,1, f[0], f[1], f[2]);
+  setPixel(2, 2, f[0], f[1], f[2]);
+  setPixel(5, 1, f[0], f[1], f[2]);
+  setPixel(5, 2, f[0], f[1], f[2]);
+  setPixel(6, 1, f[0], f[1], f[2]);
+  setPixel(6, 2, f[0], f[1], f[2]);
+//  setPixel(0, 7, f[0], f[1], f[2]);
+//  setPixel(7, 7, f[0], f[1], f[2]);
+    setPixel(1, 7, f[0], f[1], f[2]);
+  setPixel(2, 6, f[0], f[1], f[2]);
+  setPixel(3, 6, f[0], f[1], f[2]);
+
+  setPixel(4, 6, f[0], f[1], f[2]);
+  setPixel(5, 6, f[0], f[1], f[2]);
+  setPixel(6, 7, f[0], f[1], f[2]);
 
 
 }
 
 
 void animatedTears(){
+  int f[3] = { 255, 6, 250 };
+  int dd = 25;
   
-  setPixel(2,3, 0xf, 0xf, 0xf);
-  delay(25);
+  setPixel(1,3, f[0], f[1], f[2]);
+  setPixel(6,3, f[0], f[1], f[2]);
+  
+  delay(dd*5);
+  
+  setPixel(1,3, 0,0,0);
+  setPixel(6,3, 0,0,0);
+  
+  delay(dd);
+  
+//  setPixel(1,3, f[0], f[1], f[2]);
+//  setPixel(0,3, f[0], f[1], f[2]);
+//  setPixel(1,4, f[0], f[1], f[2]);
+  setPixel(1,4, f[0], f[1], f[2]);
+  setPixel(6,4, f[0], f[1], f[2]);
+  
+  delay(dd*5);
+  
+//  setPixel(1,3, 0,0,0);
+//  setPixel(0,3, 0,0,0);
+//  setPixel(1,4, 0,0,0);
+  setPixel(1,4, 0,0,0);
+  setPixel(6,4, 0,0,0);  
+  delay(dd);
+  
+//  setPixel(0,4, f[0], f[1], f[2]);
+//  setPixel(0,3, f[0], f[1], f[2]);
+//  setPixel(1,5, f[0], f[1], f[2]);
 
-  setPixel(1,4, 0xf, 0xf, 0xf);
-  setPixel(2,3, 0, 0, 0);
-  delay(25);
-  setPixel(1,4, 0, 0, 0);
-  setPixel(1,3, 0xf, 0xf, 0xf);
-
-  delay(25);
+  setPixel(1,5, f[0], f[1], f[2]);
+  setPixel(6,5, f[0], f[1], f[2]);
+  
+  delay(dd*5);
+//  setPixel(0,4, 0,0,0);
+//  setPixel(0,3, 0,0,0);  
+//  setPixel(1,5, 0,0,0);
+  
+  setPixel(6,5, 0,0,0);
+  setPixel(1,5, 0,0,0);
+  
 }
   
 void fillCanvas(byte c1, byte c2, byte c3){
