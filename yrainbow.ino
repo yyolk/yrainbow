@@ -24,7 +24,8 @@ void loop()
 {
   fillCanvas(0,0,0);
   delay(25);
-  fillCanvas(255,255,255);
+  randomDots();
+  delay(25);
 }
 
 void randomDots(){
@@ -42,7 +43,7 @@ void randomDots(){
 void fillCanvas(int c1, int c2, int c3){
 
   
-  int c[] = {this.c1, this.c2, this.c3};
+  int c[] = {c1, c2, c3};
 
   
   
