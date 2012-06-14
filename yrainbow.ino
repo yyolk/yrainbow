@@ -18,8 +18,7 @@ int* fuschia[]={0, 0, 0};
 void setup()
 {
   _init();
-
-   fillCanvas(0, 0, 0);
+  fillCanvas(0,0,0);
 
 }
 
@@ -34,34 +33,44 @@ void loop()
 // void setPixel(byte x, byte y, byte r, byte g, byte b)
   
   //1-5  group 1
-  for (int i = 0; i<256; i++){
-  setPixel(0,0,(i%255),0,(i%30));
-  setPixel(0,1,0,(i%255),(i%30));
-  setPixel(0,2,(i%255),0,(i%30));
-  setPixel(0,3,0,(i%255),(i%30));
-  setPixel(0,4,(i%255),0,(i%30));
-  //----------
-  //6-18 group 2
-  //setPixel(0, 5, 0); 
-  setPixel(0,6,0,225,0);
-  setPixel(0,7,0,225,0);
-  setPixel(1,0,0,225,0);
-  setPixel(1,1,0,225,0);
-  setPixel(1,2,0,225,0);
-  setPixel(1,3,0,225,0);
-  setPixel(1,4,0,225,0);
-  setPixel(1,5,0,225,0);
-  setPixel(1,6,0,225,0);
-  setPixel(1,7,0,225,0);
-  setPixel(2,0,0,225,0);
-  setPixel(2,1,0,225,0);
-  setPixel(2,2,0,225,0);
-
+//  for (int i = 0; i<256; i++){
+//  setPixel(0,0,(i%255),0,(i%30));
+//  setPixel(0,1,0,(i%255),(i%30));
+//  setPixel(0,2,(i%255),0,(i%30));
+//  setPixel(0,3,0,(i%255),(i%30));
+//  setPixel(0,4,(i%255),0,(i%30));
+//  //----------
+//  //6-18 group 2
+//  //setPixel(0, 5, 0); 
+//  setPixel(0,6,0,225,0);
+//  setPixel(0,7,0,225,0);
+//  setPixel(1,0,0,225,0);
+//  setPixel(1,1,0,225,0);
+//  setPixel(1,2,0,225,0);
+//  setPixel(1,3,0,225,0);
+//  setPixel(1,4,0,225,0);
+//  setPixel(1,5,0,225,0);
+//  setPixel(1,6,0,225,0);
+//  setPixel(1,7,0,225,0);
+//  setPixel(2,0,0,225,0);
+//  setPixel(2,1,0,225,0);
+//  setPixel(2,2,0,225,0);
+//
+//  
   
-  
-  }
 
+randomDots();
+delay(300);
 }
+
+void randomDots(){
+   for (int i=0; i<8; i++){
+      for (int j=0; j<8; j++){
+        setPixel(i,j, random(255), random(255), random(255));
+   } 
+   }
+}
+
 
 
 
