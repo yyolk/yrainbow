@@ -10,7 +10,9 @@ byte line, level;
 void blackblack(int* blk[]);
 int* blk[]={0, 0, 0};
 void fuschiafuschia(int* fuschia[]);
-int* fuschia[] = {0,0,0};
+//int* fuschia[] = {0,0,0};
+int* fuschia[]={0, 0, 0};
+
 
 
 void setup()
@@ -20,12 +22,16 @@ void setup()
   
 }
 
+
+//
+//
+// main loop
 void loop()
 {
   fillCanvas(0,0,0);
   delay(25);
-  randomDots();
-  delay(25);
+  drawAbsisMinas();
+
 }
 
 void randomDots(){
@@ -46,7 +52,7 @@ void fillCanvas(int c1, int c2, int c3){
   int c[] = {c1, c2, c3};
 
   
-  c
+  
   for (byte x = 0; x < 8; x++)
   {
     for (byte y = 0; y < 8; y++)
