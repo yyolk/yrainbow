@@ -28,10 +28,10 @@ void setup()
 // main loop
 void loop()
 {
-  fillCanvas(0,0,0);
+  
+  fillCanvas(random(255),random(255),random(255));
   delay(25);
   drawAbsisMinas();
-
 }
 
 void randomDots(){
