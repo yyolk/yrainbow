@@ -1,99 +1,216 @@
 
 
-void drawAbsisMinas(){
+#include "Rainbow.h"
 
-byte f[] = {byte(255), byte(6), byte(250)};
+extern byte buffer[3][8][4]; // display buffer, see data.c
+extern byte gamma[16];
+byte line, level;
+
+
+void blackblack(int* blk[]);
+int* blk[]={0, 0, 0};
+void fuschiafuschia(int* fuschia[]);
+//int* fuschia[] = {0,0,0};
+int* fuschia[]={0, 0, 0};
 
 
 
-  setPixel(1, 0, f[0], f[1], f[2]);
-  setPixel(1, 1, f[0], f[1], f[2]);
-  setPixel(2,0, f[0], f[1], f[2]);
-  setPixel(2, 1, f[0], f[1], f[2]);
-  setPixel(5, 0, f[0], f[1], f[2]);
-  setPixel(5, 1, f[0], f[1], f[2]);
-  setPixel(6, 0, f[0], f[1], f[2]);
-  setPixel(6, 1, f[0], f[1], f[2]);
-//  setPixel(0, 7, f[0], f[1], f[2]);
-//  setPixel(7, 7, f[0], f[1], f[2]);
-    setPixel(1, 7, f[0], f[1], f[2]);
-  setPixel(2, 6, f[0], f[1], f[2]);
-  setPixel(3, 6, f[0], f[1], f[2]);
+void setup()
+{
+  _init();
 
-  setPixel(4, 6, f[0], f[1], f[2]);
-  setPixel(5, 6, f[0], f[1], f[2]);
-  setPixel(6, 7, f[0], f[1], f[2]);
-  //byte offc[3]={random(0xf),random(0xf),random(0xf)};
-  //byte offc[3]={f[0], f[1], f[2]};
-//  byte offc[] = {*f*random(2000)%255, *f*random(2000)%255, *f*random(2000)%255};
-//  for (int i=0; i<4; i++){
-//     //offc[i] = random(0xf);
-//      offc[i] = (0,0,90);
-//  }
-  byte offc[] = {*f};
-  animatedTears();  
+  
 }
 
 
-void animatedTears(){
-//  int f[3] = {255 - offc[0], 255 - offc[1], 255 - offc[2]};
-
-//  int f[3] = { 255, 6, 250 };
-  //int f[3] = { random(255), random(255), random(255) };
-  int f[3] = {255, 6, 250};
-
-  int dd = 25;
-  byte offc[3] = {random(255), random(255), random(255)};
+//
+//
+// main loop
+void loop()
+{ 
   
-  delay(dd*6);
-  setPixel(1,2, f[0], f[1], f[2]);
-  setPixel(6,2, f[0], f[1], f[2]);
   
-  delay(dd*2);
+//  void setPixel(byte x, byte y, byte r, byte g, byte b)
   
-  setPixel(1,2, offc[0], offc[1], offc[2]);
-  setPixel(6,2, offc[0], offc[1], offc[2]);
   
-  delay(dd);
+  setPixel()
+  //1-5  group 1
+  //6-18 group 2
   
-//  setPixel(1,3, f[0], f[1], f[2]);
-//  setPixel(0,3, f[0], f[1], f[2]);
-//  setPixel(1,4, f[0], f[1], f[2]);
-  setPixel(1,3, f[0], f[1], f[2]);
-  setPixel(6,3, f[0], f[1], f[2]);
-  
-  delay(dd*2);
-  
-//  setPixel(1,3, 0,0,0);
-//  setPixel(0,3, 0,0,0);
-//  setPixel(1,4, 0,0,0);
-  setPixel(1,3, offc[0], offc[1], offc[2]);
-  setPixel(6,3, offc[0], offc[1], offc[2]);  
-  delay(dd);
-  
-//  setPixel(0,4, f[0], f[1], f[2]);
-//  setPixel(0,3, f[0], f[1], f[2]);
-//  setPixel(1,5, f[0], f[1], f[2]);
-
-  setPixel(1,4, f[0], f[1], f[2]);
-  setPixel(6,4, f[0], f[1], f[2]);
-  
-  delay(dd*2);
-//  setPixel(0,4, 0,0,0);
-//  setPixel(0,3, 0,0,0);  
-//  setPixel(1,5, 0,0,0);
-  
-  setPixel(6,4, offc[0], offc[1], offc[2]);
-  setPixel(1,4, offc[0], offc[1], offc[2]);
-  
-  delay(dd);
-  
-  setPixel(1,5, f[0], f[1], f[2]);
-  setPixel(6,5, f[0], f[1], f[2]);
-  
-  delay(dd*2);
-  
-    setPixel(1,5, offc[0], offc[1], offc[2]);
-  setPixel(6,5, offc[0], offc[1], offc[2]);
-  
+  fillCanvas(255, 0, 0);
+  //
+  // do stuff
 }
+
+
+
+
+
+  
+void fillCanvas(int c1, int c2, int c3){
+
+  
+  int c[] = {c1, c2, c3};
+
+  
+  
+  for (byte x = 0; x < 8; x++)
+  {
+    for (byte y = 0; y < 8; y++)
+      setPixel(x, y, c[0], c[1], c[2]);
+  }
+}
+
+//
+// this function sets one 'pixel', i.e. three leds at a time
+// use this if you have a 8x8 led matrix
+void setPixel(byte x, byte y, byte r, byte g, byte b)
+{  
+  byte xr, xg, xb, xx, xy, msk;
+  xx = x & 7;
+  xy = y & 7;
+  
+  if (!(xx % 2))
+  {
+    xr = (r << 4);
+    xg = (g << 4);
+    xb = (b << 4);
+    msk = 0x0f;
+  }
+  else
+  {
+    xr = r & 0x0f;
+    xg = g & 0x0f;
+    xb = b & 0x0f;
+    msk = 0xf0;
+  }
+  
+  xx /= 2;
+
+  buffer[0][xy][xx] = xg | (buffer[0][xy][xx] & msk);
+  buffer[1][xy][xx] = xr | (buffer[1][xy][xx] & msk);
+  buffer[2][xy][xx] = xb | (buffer[2][xy][xx] & msk);
+}
+
+
+
+// =================================================
+// internal stuff -- didn't really touch that at all
+// just reformated for enhanced readability
+
+ISR(TIMER2_OVF_vect)
+{ 
+  TCNT2 = gamma[level];
+  flash_next_line(line, level);
+  line++;
+  if (line > 7)
+  {
+    line = 0;
+    level++;
+    if(level > 15)
+      level = 0;
+  }
+}
+
+
+void init_timer2()               
+{
+  TCCR2A |= (1 << WGM21) | (1 << WGM20);   
+  TCCR2B |= (1 << CS22);
+  TCCR2B &= ~((1 << CS21) | (1 << CS20));
+  TCCR2B &= ~((1 << WGM21) | (1 << WGM20));
+  ASSR |= (0 << AS2);
+  TIMSK2 |= (1 << TOIE2) | (0 << OCIE2B);
+  TCNT2 = gamma[0];
+  sei();   
+}
+
+
+void _init()
+{
+  DDRD = 0xff;
+  DDRC = 0xff;
+  DDRB = 0xff;
+  PORTD = 0;
+  PORTB = 0;
+  level = 0;
+  line = 0;
+  init_timer2();
+}
+
+
+void shift_1_bit(unsigned char LS)
+{
+  if (LS)
+  {
+    shift_data_1;
+  }
+  else
+  {
+    shift_data_0;
+  }
+  clk_rising;
+}
+
+
+void flash_next_line(unsigned char line, unsigned char level)
+{
+  disable_oe;
+  close_all_line;
+  open_line(line);
+  shift_24_bit(line, level);
+  enable_oe;
+}
+
+
+void shift_24_bit(unsigned char line, unsigned char level)
+{
+  unsigned char color = 0, row = 0;
+  unsigned char data0 = 0, data1 = 0;
+  
+  le_high;
+  for (color = 0; color < 3; color++)
+  {
+    for (row = 0; row < 4; row++)
+    {
+      data1 = buffer[color][line][row] & 0x0f;
+      data0 = buffer[color][line][row] >> 4;
+
+      if (data0 > level)
+      {
+        shift_1_bit(1);
+      }
+      else
+      {
+        shift_1_bit(0);
+      }
+
+      if (data1 > level)
+      {
+        shift_1_bit(1);
+      }
+      else
+      {
+        shift_1_bit(0);
+      }
+    }
+  }
+  le_low;
+}
+
+
+void open_line(unsigned char line)
+{
+  switch (line)
+  {
+    case 0: open_line0; break;
+    case 1: open_line1; break;
+    case 2: open_line2; break;
+    case 3: open_line3; break;
+    case 4: open_line4; break;
+    case 5: open_line5; break;
+    case 6: open_line6; break;
+    case 7: open_line7; break;
+  }
+}
+
